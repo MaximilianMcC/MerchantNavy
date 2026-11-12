@@ -1,23 +1,24 @@
-﻿using System.Diagnostics;
-using Raylib_cs;
+﻿using Raylib_cs;
 
 class Program
 {
 	public static void Main(string[] args)
 	{
 		Raylib.SetTraceLogLevel(TraceLogLevel.Warning);
+		Raylib.SetConfigFlags(ConfigFlags.ResizableWindow | ConfigFlags.AlwaysRunWindow);
 		Raylib.InitWindow(960, 540, "a game related to the company of merchants of london trading into the east indies");
 		Terminal.Run();
 
 		DebugManager.DebugMode = true;
 		LocalizationManager.LoadLocalizations();
 
-		GameObject test = new GameObject("test");
-		test.AddComponent(new Draggable());
-		test.AddComponent(new TextureRenderer());
-		test.AddComponent(new Hitbox());
+		GameObject envelope = new GameObject("envelope");
+		envelope.AddComponent(new Draggable());
+		envelope.AddComponent(new TextureRenderer("./assets/texture/envelope.png"));
+		envelope.AddComponent(new Hitbox());
+		SceneManager.Add(envelope);
 
-		SceneManager.Add(test);
+
 
 		while (Raylib.WindowShouldClose() == false)
 		{

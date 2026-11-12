@@ -5,6 +5,9 @@ static class LocalizationManager
 	public static IReadOnlyList<Localization> Localizations => localizations;
 	private static List<Localization> localizations = [];
 
+	// TODO: Put this in some other class
+	public static Localization CurrentLocalization;
+
 	public static void LoadLocalizations()
 	{
 		// Get all the languages then populate them all
@@ -23,6 +26,9 @@ static class LocalizationManager
 		}
 
 		Console.WriteLine($"Loaded and baked {allLanguageFilePaths.Length} language file(s)\n{String.Join(", ", localizations)}");
+
+		// TODO: put this somewhere else
+		CurrentLocalization = GetLocalizationFromLanguageCode("en");
 	}
 
 	public static Localization GetLocalizationFromLanguageCode(string languageCode)

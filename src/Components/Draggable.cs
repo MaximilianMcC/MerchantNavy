@@ -3,7 +3,7 @@ using Raylib_cs;
 
 class Draggable : Component
 {
-	public Hitbox hitbox;
+	private Hitbox hitbox;
 
 	public override void Start()
 	{
@@ -19,7 +19,6 @@ class Draggable : Component
 		if (CurrentlyBeingDragged && Raylib.IsMouseButtonReleased(MouseButton.Left))
 		{
 			CurrentlyBeingDragged = false;
-			Console.WriteLine("Stopped dragging");
 			return;
 		}
 
@@ -28,7 +27,6 @@ class Draggable : Component
 		{
 			CurrentlyBeingDragged = true;
 			mouseOffset = GameObject.Transform.Position - Raylib.GetMousePosition();
-			Console.WriteLine("Started dragging");
 		}
 
 		// Check for if we're doing a drag

@@ -37,7 +37,7 @@ class GameObject
 	public void AddChild(GameObject child)
 	{
 		// Remove the child from their previous parent
-		child.Parent.RemoveChild(child);
+		child.Parent?.RemoveChild(child);
 
 		// Attach them to us
 		child.Parent = this;
@@ -55,7 +55,7 @@ class GameObject
 		child.Transform.Parent = null;
 	}
 
-
+	public GameObject GetChild(string name) => children.Where(x => x.Name == name).FirstOrDefault();
 
 
 
