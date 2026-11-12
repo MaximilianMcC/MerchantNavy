@@ -3,8 +3,12 @@ using Raylib_cs;
 
 class Hitbox : Component
 {
-	public Vector2 Size = new Vector2(100f);
+	// TODO: Do this some way else
+	private Vector2 size = new Vector2(100f);
+	public Vector2 Size => size * GameObject.Transform.WorldScale;
+
 	public Rectangle Rectangle => new Rectangle(GameObject.Transform.WorldPosition, Size);
+	public Vector2 CenterPosition => GameObject.Transform.WorldPosition - (Size / 2f);
 
 	public bool BeingHoveringOver => PointInside(Raylib.GetMousePosition());
 
@@ -18,7 +22,7 @@ class Hitbox : Component
 		// TODO: Remove this or add a toggle or something idk
 		if (GameObject.TryGetComponent(out TextureRenderer texture))
 		{
-			Size = texture.Texture.Dimensions;
+			size = texture.Texture.Dimensions;
 		}
 	}
 

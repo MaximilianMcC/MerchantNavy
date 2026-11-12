@@ -16,6 +16,7 @@ class Program
 		envelope.AddComponent(new Draggable());
 		envelope.AddComponent(new TextureRenderer("./assets/texture/envelope.png"));
 		envelope.AddComponent(new Hitbox());
+		envelope.Transform.Scale *= 0.2f;
 		SceneManager.Add(envelope);
 
 
