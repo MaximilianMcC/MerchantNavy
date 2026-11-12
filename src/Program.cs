@@ -10,20 +10,26 @@ class Program
 
 		LocalizationManager.LoadLocalizations();
 
+		GameObject test = new GameObject("test");
+		test.AddComponent(new Draggable());
+
+		SceneManager.Add(test);
+
 		while (Raylib.WindowShouldClose() == false)
 		{
 			Terminal.Update();
 			Terminal.HandleBuiltInCommands();
 
-			Test.Update();
+			SceneManager.Update();
 
 			Raylib.BeginDrawing();
 			Raylib.ClearBackground(Color.Magenta);
-			
-			Test.Draw();
+			SceneManager.Draw();
+			SceneManager.DrawUi();
 			Raylib.EndDrawing();
 		}
 
+		SceneManager.CleanUp();
 		Raylib.CloseWindow();
 	}
 }
