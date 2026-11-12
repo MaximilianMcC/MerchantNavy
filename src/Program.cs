@@ -2,6 +2,8 @@
 
 class Program
 {
+	public static bool DebugMode { get; set; } = false;
+
 	public static void Main(string[] args)
 	{
 		Raylib.SetTraceLogLevel(TraceLogLevel.Warning);
@@ -25,7 +27,9 @@ class Program
 			Raylib.BeginDrawing();
 			Raylib.ClearBackground(Color.Magenta);
 			SceneManager.Draw();
+			SceneManager.DrawDebug();
 			SceneManager.DrawUi();
+			SceneManager.DrawUiDebug();
 			Raylib.EndDrawing();
 		}
 

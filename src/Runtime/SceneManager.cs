@@ -10,22 +10,34 @@ class SceneManager
 	}
 
 	public static void Update()
-    {
-        foreach (GameObject gameObject in gameObjects) gameObject.Update();
-    }
+	{
+		foreach (GameObject gameObject in gameObjects) gameObject.Update();
+	}
 
-    public static void Draw()
-    {
-        foreach (GameObject gameObject in gameObjects) gameObject.Draw();
-    }
+	public static void Draw()
+	{
+		foreach (GameObject gameObject in gameObjects) gameObject.Draw();
+	}
 
-    public static void DrawUi()
-    {
-        foreach (GameObject gameObject in gameObjects) gameObject.DrawUi();
-    }
+	public static void DrawDebug()
+	{
+		if (Program.DebugMode == false) return;
+		foreach (GameObject gameObject in gameObjects) gameObject.DrawDebug();
+	}
 
-    public static void CleanUp()
-    {
-        foreach (GameObject gameObject in gameObjects) gameObject.CleanUp();
-    }
+	public static void DrawUi()
+	{
+		foreach (GameObject gameObject in gameObjects) gameObject.DrawUi();
+	}
+
+	public static void DrawUiDebug()
+	{
+		if (Program.DebugMode == false) return;
+		foreach (GameObject gameObject in gameObjects) gameObject.DrawUiDebug();
+	}
+
+	public static void CleanUp()
+	{
+		foreach (GameObject gameObject in gameObjects) gameObject.CleanUp();
+	}
 }

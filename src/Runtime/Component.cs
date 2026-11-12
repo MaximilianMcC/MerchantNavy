@@ -7,6 +7,9 @@ abstract class Component
 
 	public virtual void Update() { }
 
-	public virtual void DrawUi() { }
 	public virtual void Draw() { }
+	public virtual void DrawDebug() { }
+
+	public virtual void DrawUi() { }
+	public virtual void DrawUiDebug() { }
 }

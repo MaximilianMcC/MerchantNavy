@@ -3,18 +3,8 @@ using Raylib_cs;
 
 class Draggable : Component
 {
-	public override void Start()
+	public override void DrawUiDebug()
 	{
-		Console.WriteLine("hi");
-	}
-
-	public override void Draw()
-	{
-		Graphics.DrawRectangle(GameObject.Transform.Position, new Vector2(100f), Color.White);
-	}
-
-	public override void CleanUp()
-	{
-		Console.WriteLine("bye");
+		Graphics.DrawRectangle(Vector2.Zero, new Vector2(10), Color.Orange);
 	}
 }

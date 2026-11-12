@@ -71,10 +71,22 @@ class GameObject
 		foreach (GameObject child in Children) child.Draw();
 	}
 
+	public void DrawDebug()
+	{
+		foreach (Component component in components) component.DrawDebug();
+		foreach (GameObject child in Children) child.DrawDebug();
+	}
+
 	public void DrawUi()
 	{
 		foreach (Component component in components) component.DrawUi();
 		foreach (GameObject child in Children) child.DrawUi();
+	}
+
+	public void DrawUiDebug()
+	{
+		foreach (Component component in components) component.DrawUiDebug();
+		foreach (GameObject child in Children) child.DrawUiDebug();
 	}
 
 	public void CleanUp()
