@@ -9,7 +9,7 @@ class Program
 		Raylib.InitWindow(960, 540, "a game related to the company of merchants of london trading into the east indies");
 		Terminal.Run();
 
-		DebugManager.DebugMode = true;
+		DebugManager.LoadDebugState();
 		LocalizationManager.LoadLocalizations();
 
 		GameObject envelope = new GameObject("envelope");
