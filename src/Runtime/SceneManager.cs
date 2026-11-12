@@ -21,7 +21,7 @@ class SceneManager
 
 	public static void DrawDebug()
 	{
-		if (Program.DebugMode == false) return;
+		if (DebugManager.DebugMode == false) return;
 		foreach (GameObject gameObject in gameObjects) gameObject.DrawDebug();
 	}
 
@@ -32,7 +32,7 @@ class SceneManager
 
 	public static void DrawUiDebug()
 	{
-		if (Program.DebugMode == false) return;
+		if (DebugManager.DebugMode == false) return;
 		foreach (GameObject gameObject in gameObjects) gameObject.DrawUiDebug();
 	}
 

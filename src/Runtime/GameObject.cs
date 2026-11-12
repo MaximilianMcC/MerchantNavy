@@ -27,6 +27,13 @@ class GameObject
 	public T GetComponent<T>() where T : Component => components.OfType<T>().FirstOrDefault();
 	public IReadOnlyList<T> GetComponents<T>() where T : Component => components.OfType<T>().ToList();
 
+	public bool ComponentExists<T>() where T : Component => components.OfType<T>().Count() > 0;
+	public bool TryGetComponent<T>(out T component) where T : Component
+	{
+		component = components.OfType<T>().FirstOrDefault();
+		return component != null;
+	}
+
 	public void AddChild(GameObject child)
 	{
 		// Remove the child from their previous parent

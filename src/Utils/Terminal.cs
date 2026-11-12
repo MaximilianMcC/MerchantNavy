@@ -98,10 +98,6 @@ static class Terminal
 		if (CommandRan("hi")) Console.WriteLine("kia ora");
 		if (CommandRan("echo", out args)) Console.WriteLine(String.Join(" ", args));
 
-		if (CommandRan("debug"))
-		{
-			Program.DebugMode = !Program.DebugMode;
-			Console.WriteLine("Debug mode is now " + (Program.DebugMode ? "enabled" : "disabled") + ".");
-		}
+		if (CommandRan("debug")) DebugManager.ToggleDebugMode();
 	}
 }
