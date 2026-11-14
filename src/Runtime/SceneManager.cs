@@ -5,6 +5,8 @@ class SceneManager
 
 	public static IReadOnlyList<GameObject> GameObjects => gameObjects;
 
+	private static List<Type> staticallyStartedTypes = [];
+
 	public static void Add(GameObject gameObject) => newGameObjects.Add(gameObject);
 
 	public static void Update()
@@ -31,6 +33,7 @@ class SceneManager
 	public static void CleanUp()
 	{
 		ForEachComponent(x => x.CleanUp());
+		ForEachComponent(x => x.CleanUpStatic());
 
 		gameObjects.Clear();
 		newGameObjects.Clear();
@@ -84,7 +87,13 @@ class SceneManager
 			{
 				component.Start();
 
-				// TODO: StartStatic method thing
+				// StartStatic method thing (ran once per type)
+				Type componentType = component.GetType();
+				if (staticallyStartedTypes.Contains(componentType) == false)
+				{
+					staticallyStartedTypes.Add(componentType);
+					component.StartStatic();
+				}
 			}
 
 			// Add it to the actual game

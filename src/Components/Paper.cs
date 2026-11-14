@@ -14,10 +14,10 @@ class Paper : Component
 
 	public override void Draw()
 	{
-		TextureRenderer texture = GameObject.GetComponent<TextureRenderer>();
+		TextureRenderer texture = GetComponent<TextureRenderer>();
 
 		Localization texts = LocalizationManager.CurrentLocalization;
-		Graphics.DrawTextWrapped(texts["LoremIpsum"], GameObject.Transform.WorldPosition + textOffset, (texture.Texture.Dimensions * GameObject.Transform.WorldScale).X - 30f, font, 32f, Color.Black);
+		Graphics.DrawTextWrapped(texts["LoremIpsum"], Transform.WorldPosition + textOffset, (texture.Texture.Dimensions * Transform.WorldScale).X - 30f, font, 32f, Color.Black);
 	}
 
 	public override void CleanUp()

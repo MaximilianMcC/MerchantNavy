@@ -5,10 +5,10 @@ class Hitbox : Component
 {
 	// TODO: Do this some way else
 	private Vector2 size = new Vector2(100f);
-	public Vector2 Size => size * GameObject.Transform.WorldScale;
+	public Vector2 Size => size * Transform.WorldScale;
 
-	public Rectangle Rectangle => new Rectangle(GameObject.Transform.WorldPosition, Size);
-	public Vector2 CenterPosition => GameObject.Transform.WorldPosition - (Size / 2f);
+	public Rectangle Rectangle => new Rectangle(Transform.WorldPosition, Size);
+	public Vector2 CenterPosition => Transform.WorldPosition - (Size / 2f);
 
 	public bool BeingHoveringOver => PointInside(Raylib.GetMousePosition());
 
@@ -31,6 +31,6 @@ class Hitbox : Component
 	public override void DrawDebug()
 	{
 		Raylib.DrawRectangleRec(Rectangle, blue);
-		Raylib.DrawCircleV(GameObject.Transform.Position, 10f, Color.White);
+		Raylib.DrawCircleV(Transform.Position, 5f, Color.White);
 	}
 }

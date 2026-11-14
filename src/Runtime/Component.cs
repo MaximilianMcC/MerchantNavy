@@ -7,8 +7,12 @@ abstract class Component
 	public bool ComponentExists<T>() where T : Component => GameObject.ComponentExists<T>();
 	public bool TryGetComponent<T>(out T component) where T : Component => GameObject.TryGetComponent(out component);
 
+	public Transform Transform => GameObject.Transform;
+
 	public virtual void Start() { }
+	public virtual void StartStatic() { }
 	public virtual void CleanUp() { }
+	public virtual void CleanUpStatic() { }
 
 	public virtual void Update() { }
 

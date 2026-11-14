@@ -32,14 +32,18 @@ class GameObject
 		};
 	}
 
-	public T AddComponent<T>(T component) where T : Component
+	//? Returns the game object so you can chain components together
+	public GameObject AddComponent<T>(T component, out T addedComponent) where T : Component
 	{
 		// TODO: Transform too
 		component.GameObject = this;
 		components.Add(component);
 
-		return component;
+		addedComponent = component;
+		return this;
 	}
+
+	public GameObject AddComponent<T>(T component) where T : Component => AddComponent(component, out _);
 
 	public T GetComponent<T>() where T : Component => components.OfType<T>().FirstOrDefault();
 	public IReadOnlyList<T> GetComponents<T>() where T : Component => components.OfType<T>().ToList();
@@ -51,7 +55,7 @@ class GameObject
 		return component != null;
 	}
 
-	public void AddChild(GameObject child)
+	public GameObject AddChild(GameObject child)
 	{
 		// Remove the child from their previous parent
 		child.Parent?.RemoveChild(child);
@@ -61,6 +65,7 @@ class GameObject
 		child.Transform.Parent = Transform;
 
 		children.Add(this);
+		return child;
 	}
 
 	public void RemoveChild(GameObject child)
@@ -72,7 +77,7 @@ class GameObject
 		child.Transform.Parent = null;
 	}
 
-	public GameObject GetChild(string name) => children.Where(x => x.Name == name).FirstOrDefault();
+	public GameObject GetChild(string name) => children.FirstOrDefault(x => x.Name == name);
 
 	public void Delete()
 	{

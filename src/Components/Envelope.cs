@@ -16,14 +16,14 @@ class Envelope : Component
 		if (!(dragStatus.CurrentlyBeingDragged && Raylib.IsKeyPressed(KeyboardKey.E))) return;
 
 		// Get our centre position so we can spawn the paper there too
-		Vector2 spawnPosition = GameObject.Transform.Position;
+		Vector2 spawnPosition = Transform.Position;
 
 		// Spawn a letter
-		GameObject paper = new GameObject("paper");
-		Draggable paperDragging = paper.AddComponent(new Draggable());
-		paper.AddComponent(new TextureRenderer("./assets/texture/paper1.png"));
-		paper.AddComponent(new Hitbox());
-		paper.AddComponent(new Paper());
+		GameObject paper = new GameObject("paper")
+			.AddComponent(new Draggable(), out Draggable paperDragging)
+			.AddComponent(new TextureRenderer("./assets/texture/paper1.png"))
+			.AddComponent(new Hitbox())
+			.AddComponent(new Paper());
 		paper.Transform.Position = spawnPosition;
 		dragStatus.TransferTo(paperDragging);
 		SceneManager.Add(paper);

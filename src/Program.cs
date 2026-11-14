@@ -1,4 +1,5 @@
-﻿using Raylib_cs;
+﻿using System.Numerics;
+using Raylib_cs;
 
 class Program
 {
@@ -12,13 +13,26 @@ class Program
 		DebugManager.LoadDebugState();
 		LocalizationManager.LoadLocalizations();
 
-		GameObject envelope = new GameObject("envelope");
-		envelope.AddComponent(new Draggable());
-		envelope.AddComponent(new TextureRenderer("./assets/texture/envelope.png"));
-		envelope.AddComponent(new Hitbox());
-		envelope.AddComponent(new Envelope());
-		// envelope.Transform.Scale *= 0.2f;
-		SceneManager.Add(envelope);
+		SceneManager.Add(new GameObject("envelope")
+			.AddComponent(new Draggable())
+			.AddComponent(new TextureRenderer("./assets/texture/envelope.png"))
+			.AddComponent(new Hitbox())
+			.AddComponent(new Envelope())
+		);
+
+		SceneManager.Add(new GameObject("envelope", new Vector2(100, 100))
+			.AddComponent(new Draggable())
+			.AddComponent(new TextureRenderer("./assets/texture/envelope.png"))
+			.AddComponent(new Hitbox())
+			.AddComponent(new Envelope())
+		);
+
+		SceneManager.Add(new GameObject("envelope", new Vector2(1000, 1000))
+			.AddComponent(new Draggable())
+			.AddComponent(new TextureRenderer("./assets/texture/envelope.png"))
+			.AddComponent(new Hitbox())
+			.AddComponent(new Envelope())
+		);
 
 		while (Raylib.WindowShouldClose() == false)
 		{
