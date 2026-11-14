@@ -31,5 +31,6 @@ class Hitbox : Component
 	public override void DrawDebug()
 	{
 		Raylib.DrawRectangleRec(Rectangle, blue);
+		Raylib.DrawCircleV(GameObject.Transform.Position, 10f, Color.White);
 	}
 }

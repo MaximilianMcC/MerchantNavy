@@ -1,3 +1,5 @@
+using System.Numerics;
+
 class GameObject
 {
 	public string Name { get; private set; }
@@ -17,7 +19,17 @@ class GameObject
 	public GameObject(string name = "My Game Object")
 	{
 		Name = name;
-		Transform = new Transform() { GameObject = this };
+		Transform = new Transform() { GameObject = this };		
+	}
+
+	public GameObject(string name, Vector2 position)
+	{
+		Name = name;
+		Transform = new Transform()
+		{
+			GameObject = this,
+			Position = position
+		};
 	}
 
 	public T AddComponent<T>(T component) where T : Component

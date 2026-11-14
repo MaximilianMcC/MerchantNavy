@@ -50,4 +50,11 @@ class Draggable : Component
 			if (velocity.Length() < 0.01f) velocity = Vector2.Zero;
 		}
 	}
+
+	// TODO: just make it so CurrentlyBeingDragged can be set too
+	public void TransferTo(Draggable draggable)
+	{
+		draggable.CurrentlyBeingDragged = CurrentlyBeingDragged;
+		CurrentlyBeingDragged = !CurrentlyBeingDragged;
+	}
 }
