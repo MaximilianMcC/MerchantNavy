@@ -14,8 +14,6 @@ class Hitbox : Component
 
 	public bool PointInside(Vector2 point) => Raylib.CheckCollisionPointRec(point, Rectangle);
 
-
-
 	public override void Start()
 	{
 		// if we have a texture renderer on us then use that size

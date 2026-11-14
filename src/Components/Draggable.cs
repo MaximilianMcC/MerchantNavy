@@ -12,14 +12,13 @@ class Draggable : Component
 
 	public bool CurrentlyBeingDragged { get; private set; }
 
-	private float followSpeed = 10f;
+	private float followSpeed = 8f;
 	private Vector2 velocity = Vector2.Zero;
 	private float friction = 8f;
 
 	public override void Update()
 	{
 		// Check for if we're stopping a drag
-		//? if (CurrentlyBeingDragged && Raylib.IsMouseButtonReleased(MouseButton.Left))
 		if (CurrentlyBeingDragged && Raylib.IsKeyReleased(KeyboardKey.Space))
 		{
 			CurrentlyBeingDragged = false;
@@ -27,7 +26,6 @@ class Draggable : Component
 		}
 
 		// Check for if we're starting a new drag
-		//? if (Raylib.IsMouseButtonPressed(MouseButton.Left) && hitbox.BeingHoveringOver)
 		if (Raylib.IsKeyPressed(KeyboardKey.Space) && hitbox.BeingHoveringOver)
 		{
 			CurrentlyBeingDragged = true;

@@ -19,7 +19,13 @@ class Program
 		envelope.Transform.Scale *= 0.2f;
 		SceneManager.Add(envelope);
 
-
+		GameObject paper = new GameObject("paper");
+		paper.AddComponent(new Draggable());
+		paper.AddComponent(new TextureRenderer("./assets/texture/paper1.png"));
+		paper.AddComponent(new Hitbox());
+		paper.AddComponent(new Paper());
+		paper.Transform.Scale *= 0.5f;
+		SceneManager.Add(paper);
 
 		while (Raylib.WindowShouldClose() == false)
 		{
