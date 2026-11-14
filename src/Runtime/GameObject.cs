@@ -3,13 +3,18 @@ class GameObject
 	public string Name { get; private set; }
 
 	public GameObject Parent { get; private set; }
+	public Transform Transform { get; private set; }
+	public bool IsQueuedForDeletion { get; private set; }
+
 	public IReadOnlyList<GameObject> Children => children;
 	private List<GameObject> children = [];
 
-	public Transform Transform { get; private set; }
+	public IReadOnlyList<Component> Components => components;
 	private List<Component> components = [];
 
-	public GameObject(string name = "GameObject")
+
+
+	public GameObject(string name = "My Game Object")
 	{
 		Name = name;
 		Transform = new Transform() { GameObject = this };
@@ -26,8 +31,8 @@ class GameObject
 
 	public T GetComponent<T>() where T : Component => components.OfType<T>().FirstOrDefault();
 	public IReadOnlyList<T> GetComponents<T>() where T : Component => components.OfType<T>().ToList();
-
 	public bool ComponentExists<T>() where T : Component => components.OfType<T>().Count() > 0;
+
 	public bool TryGetComponent<T>(out T component) where T : Component
 	{
 		component = components.OfType<T>().FirstOrDefault();
@@ -57,48 +62,11 @@ class GameObject
 
 	public GameObject GetChild(string name) => children.Where(x => x.Name == name).FirstOrDefault();
 
-
-
-
-	public void Start()
+	public void Delete()
 	{
-		foreach (Component component in components) component.Start();
-		foreach (GameObject child in Children) child.Start();
+		IsQueuedForDeletion = true;
+		foreach (GameObject child in children) child.Delete();
 	}
 
-	public void Update()
-	{
-		foreach (Component component in components) component.Update();
-		foreach (GameObject child in Children) child.Update();
-	}
-
-	public void Draw()
-	{
-		foreach (Component component in components) component.Draw();
-		foreach (GameObject child in Children) child.Draw();
-	}
-
-	public void DrawDebug()
-	{
-		foreach (Component component in components) component.DrawDebug();
-		foreach (GameObject child in Children) child.DrawDebug();
-	}
-
-	public void DrawUi()
-	{
-		foreach (Component component in components) component.DrawUi();
-		foreach (GameObject child in Children) child.DrawUi();
-	}
-
-	public void DrawUiDebug()
-	{
-		foreach (Component component in components) component.DrawUiDebug();
-		foreach (GameObject child in Children) child.DrawUiDebug();
-	}
-
-	public void CleanUp()
-	{
-		foreach (Component component in components) component.CleanUp();
-		foreach (GameObject child in Children) child.CleanUp();
-	}
+	public override string ToString() => Name;
 }

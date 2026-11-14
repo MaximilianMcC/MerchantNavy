@@ -5,8 +5,8 @@ class Transform
 	public GameObject GameObject { get; internal set; }
 
 	// Local stuff
-	public Vector2 Position;
-	public float Rotation;
+	public Vector2 Position = Vector2.Zero;
+	public float Rotation = 0f;
 	public Vector2 Scale = Vector2.One;
 
 	public Transform Parent { get; internal set; }

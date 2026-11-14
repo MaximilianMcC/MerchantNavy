@@ -99,5 +99,18 @@ static class Terminal
 		if (CommandRan("echo", out args)) Console.WriteLine(String.Join(" ", args));
 
 		if (CommandRan("debug")) DebugManager.ToggleDebugMode();
+
+		if (CommandRan("dir"))
+		{
+			Console.WriteLine("All game objects (excluding children)");
+			foreach (GameObject gameObject in SceneManager.GameObjects)
+			{
+				Console.WriteLine(gameObject.Name);
+				foreach (Component component in gameObject.Components)
+				{
+					Console.WriteLine(" - " + component);
+				}
+			}
+		}
 	}
 }
