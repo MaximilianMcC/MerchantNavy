@@ -102,7 +102,7 @@ static class Terminal
 
 		if (CommandRan("debug")) DebugManager.ToggleDebugMode();
 
-		if (CommandRan("dir"))
+		if (CommandRan("tree"))
 		{
 			Console.WriteLine("All game objects (excluding children)");
 			foreach (GameObject gameObject in SceneManager.GameObjects)
@@ -113,6 +113,12 @@ static class Terminal
 					Console.WriteLine(" - " + component);
 				}
 			}
+		}
+
+		if (CommandRan("lang", out args))
+		{
+			LocalizationManager.SetDynamicStringForAllLocalizations(args[0], args[1]);
+			Console.WriteLine($"{args[0]}={args[1]}");
 		}
 	}
 }

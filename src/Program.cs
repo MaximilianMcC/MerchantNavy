@@ -8,26 +8,20 @@ class Program
 		Raylib.SetTraceLogLevel(TraceLogLevel.Warning);
 		Raylib.SetConfigFlags(ConfigFlags.ResizableWindow | ConfigFlags.AlwaysRunWindow);
 		Raylib.InitWindow(960, 540, "In the hotte sun without hatte");
-		Terminal.Run();
+		Raylib.InitAudioDevice();
 
+		Terminal.Run();
 		DebugManager.LoadDebugState();
 		LocalizationManager.LoadLocalizations(false);
 
 		SceneManager.Add(new GameObject("test", new Test()));
 
-		// SceneManager.Add(new GameObject("envelope")
-		// 	.AddComponent(new Draggable())
-		// 	.AddComponent(new TextureRenderer("./assets/texture/envelope.png"))
-		// 	.AddComponent(new Hitbox())
-		// 	.AddComponent(new Envelope())
-		// );
-
-		// SceneManager.Add(new GameObject("envelope")
-		// 	.AddComponent(new Draggable())
-		// 	.AddComponent(new TextureRenderer("./assets/texture/envelope.png"))
-		// 	.AddComponent(new Hitbox())
-		// 	.AddComponent(new Envelope())
-		// );
+		SceneManager.Add(new GameObject("envelope")
+			.AddComponent(new Draggable())
+			.AddComponent(new TextureRenderer("./assets/texture/envelope.png"))
+			.AddComponent(new Hitbox())
+			.AddComponent(new Envelope())
+		);
 
 		while (Raylib.WindowShouldClose() == false)
 		{
@@ -47,6 +41,7 @@ class Program
 		}
 
 		SceneManager.CleanUp();
+		Raylib.CloseAudioDevice();
 		Raylib.CloseWindow();
 	}
 }
