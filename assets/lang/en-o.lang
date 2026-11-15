@@ -5,4 +5,4 @@ super=en
 LanguageName=Orthographical English
 LanguageDescription=Pre-WW2 Unstandardised English
 
-# presse = press
+documents.introduction=You are Director of a company trading into `location`. As Director you shall send ships to `location` to factor. You have been given a grant of £`money` and you can use it to purchase a ship.

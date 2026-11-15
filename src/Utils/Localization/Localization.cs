@@ -1,6 +1,7 @@
 class Localization
 {
-	private Dictionary<string, string> translations;
+	private Dictionary<string, string> translations = [];
+	private Dictionary<string, string> dynamicTranslations = [];
 
 	//? Superauto
 	public readonly bool IsRootLanguageFile;
@@ -10,8 +11,6 @@ class Localization
 
 	public Localization(string filePath)
 	{
-		translations = new Dictionary<string, string>();
-
 		// Loop over every line and add it to the dictionary
 		// excluding the first one since that's the relational stuff
 		string[] lines = File.ReadAllLines(filePath);
@@ -39,9 +38,13 @@ class Localization
 
 	public string GetString(string key)
 	{
-		// If we personally have a translation then use that
+		// If we personally have a baked translation then use that
 		bool keyExists = translations.TryGetValue(key, out string value);
-		if (keyExists) return value;
+		if (keyExists) return PopulateEmbeddedKeys(value);
+
+		// If we have a dynamic translation then use that
+		keyExists = dynamicTranslations.TryGetValue(key, out value);
+		if (keyExists) return PopulateEmbeddedKeys(value);
 
 		// If we haven't got a translation for that then move 'down' the chain
 		if (IsRootLanguageFile == false)
@@ -50,9 +53,41 @@ class Localization
 			return parent.GetString(key);
 		}
 
-		// If we're last on the chain and no other step has had
+		// If we're last in the chain and no other step has had
 		// it then it does not exist. Just give back the key
 		return key;
+	}
+
+	public string PopulateEmbeddedKeys(string translation)
+	{
+		// Save a copy because when we replace all the indexes will get buggered
+		string newTranslation = translation;
+
+		// Step over every character of the string
+		string currentString = "";
+		bool currentlyInString = false;
+		for (int i = 0; i < translation.Length; i++)
+		{
+			bool wasJustInString = currentlyInString;
+			if (translation[i] == '`')
+			{
+				// Check for if we're starting or ending a string
+				currentlyInString = !currentlyInString;
+				if (wasJustInString && currentlyInString == false)
+				{
+					// Ending a string
+					newTranslation = newTranslation.Replace($"`{currentString}`", GetString(currentString));
+					currentString = "";
+				}
+
+				continue;
+			}
+
+			// If we're in a string then add to the 'key'
+			if (currentlyInString) currentString += translation[i];
+		}
+
+		return newTranslation;
 	}
 
 	public Localization FindRootLanguage() => LocalizationManager.FindRootLanguage(this);
@@ -73,6 +108,10 @@ class Localization
 		// Replace the old translation dictionary with the new one
 		translations = bakedTranslations;
 	}
+
+	public void SetDynamicString(string key, string translation) => dynamicTranslations[key] = translation;
+	public void SetDynamicString(string key, float translation) => SetDynamicString(key, translation.ToString());
+	public void SetDynamicString(string key, int translation) => SetDynamicString(key, translation.ToString());
 
 	public override string ToString() => Code;
 }

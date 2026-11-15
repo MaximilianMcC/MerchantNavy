@@ -32,6 +32,14 @@ class GameObject
 		};
 	}
 
+	public GameObject(string name = "My Game Object", params Component[] components)
+	{
+		Name = name;
+		Transform = new Transform() { GameObject = this };
+		
+		foreach (Component component in components) AddComponent(component);
+	}
+
 	//? Returns the game object so you can chain components together
 	public GameObject AddComponent<T>(T component, out T addedComponent) where T : Component
 	{

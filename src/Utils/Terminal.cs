@@ -8,6 +8,8 @@ static class Terminal
 
 	public static void Run()
 	{
+		Console.Title = "Debug Console";
+
 		Thread thread = new Thread(GetInput);
 		thread.IsBackground = true;
 		thread.Start();

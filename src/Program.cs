@@ -11,28 +11,23 @@ class Program
 		Terminal.Run();
 
 		DebugManager.LoadDebugState();
-		LocalizationManager.LoadLocalizations();
+		LocalizationManager.LoadLocalizations(false);
 
-		SceneManager.Add(new GameObject("envelope")
-			.AddComponent(new Draggable())
-			.AddComponent(new TextureRenderer("./assets/texture/envelope.png"))
-			.AddComponent(new Hitbox())
-			.AddComponent(new Envelope())
-		);
+		SceneManager.Add(new GameObject("test", new Test()));
 
-		SceneManager.Add(new GameObject("envelope", new Vector2(100, 100))
-			.AddComponent(new Draggable())
-			.AddComponent(new TextureRenderer("./assets/texture/envelope.png"))
-			.AddComponent(new Hitbox())
-			.AddComponent(new Envelope())
-		);
+		// SceneManager.Add(new GameObject("envelope")
+		// 	.AddComponent(new Draggable())
+		// 	.AddComponent(new TextureRenderer("./assets/texture/envelope.png"))
+		// 	.AddComponent(new Hitbox())
+		// 	.AddComponent(new Envelope())
+		// );
 
-		SceneManager.Add(new GameObject("envelope", new Vector2(1000, 1000))
-			.AddComponent(new Draggable())
-			.AddComponent(new TextureRenderer("./assets/texture/envelope.png"))
-			.AddComponent(new Hitbox())
-			.AddComponent(new Envelope())
-		);
+		// SceneManager.Add(new GameObject("envelope")
+		// 	.AddComponent(new Draggable())
+		// 	.AddComponent(new TextureRenderer("./assets/texture/envelope.png"))
+		// 	.AddComponent(new Hitbox())
+		// 	.AddComponent(new Envelope())
+		// );
 
 		while (Raylib.WindowShouldClose() == false)
 		{
@@ -43,7 +38,7 @@ class Program
 			SceneManager.Update();
 
 			Raylib.BeginDrawing();
-			Raylib.ClearBackground(Color.Magenta);
+			Raylib.ClearBackground(Color.Brown);
 			SceneManager.Draw();
 			SceneManager.DrawDebug();
 			SceneManager.DrawUi();

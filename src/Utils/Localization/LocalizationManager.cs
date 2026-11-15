@@ -8,7 +8,7 @@ static class LocalizationManager
 	// TODO: Put this in some other class
 	public static Localization CurrentLocalization;
 
-	public static void LoadLocalizations()
+	public static void LoadLocalizations(bool bake = true)
 	{
 		// Get all the languages then populate them all
 		string[] allLanguageFilePaths = Directory.GetFiles(LocalizationsDirectory, "*.lang");
@@ -19,10 +19,13 @@ static class LocalizationManager
 
 		// Merge everything into a single dictionary so we don't
 		// have to do the whole recursive lookup thing each time
-		foreach (Localization localization in Localizations)
+		if (bake)
 		{
-			//! This saves like literally 0.0050 ms btw but its nice to know its there
-			localization.Bake();
+			foreach (Localization localization in Localizations)
+			{
+				//! This saves like literally 0.0050 ms btw but its nice to know its there
+				localization.Bake();
+			}
 		}
 
 		Console.WriteLine($"Loaded and baked {allLanguageFilePaths.Length} language file(s)\n{String.Join(", ", localizations)}");

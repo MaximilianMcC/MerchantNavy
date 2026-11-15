@@ -1,10 +1,15 @@
 superauto
 
 HelloWorld=Hello, World!
-Test=Test
+Test=Test `money` lol `location`
 
 LanguageName=English
 LanguageDescription='British' English
 
 # LoremIpsum=lorem ipsum dolor sit amet consectetur adipiscing elit sed eiusmod reprehenderit et facere praesentium exercitation similique lorem autem omnis quis dignissimos et veniam minus atque eu officia officia non ex id minus dolorum eligendi praesentium ea reprehenderit consequatur vel aut deleniti quo vel et est eu animi culpa cillum voluptatum
 LoremIpsum=This isn't lorem ipsum but since Lorem ipsum isn't actually english I wasn't sure if the text/word wrapping was actually working so instead I'm writing some actual real English wherein I actually know what the words are and if they are real words or if they have some random as space in the middle of them. This is the same length as the lorem ipsum btw (just about (minus the brackets btw))
+
+location=East Indies
+money=123
+documents.introduction=You are the director of a trading company which operates in `location`. As director, it is your job to send ships on trading expeditions to `location` to buy and sell goods, which you then bring back home.\n\nYou have been given a grant of £`money`. Start by using this to purchase a ship.
+#documents.introduction=You are the director of a trading company which operates in `location`. As director, it is your job to send ships on trading expeditions to `location` to buy and sell goods, which you then bring back home.\n\nYou have been given a grant of £money. Start by using this to purchase a ship.
