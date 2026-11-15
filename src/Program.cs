@@ -7,7 +7,7 @@ class Program
 	{
 		Raylib.SetTraceLogLevel(TraceLogLevel.Warning);
 		Raylib.SetConfigFlags(ConfigFlags.ResizableWindow | ConfigFlags.AlwaysRunWindow);
-		Raylib.InitWindow(960, 540, "a game related to the company of merchants of london trading into the east indies");
+		Raylib.InitWindow(960, 540, "In the hotte sun without hatte");
 		Terminal.Run();
 
 		DebugManager.LoadDebugState();

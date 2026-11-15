@@ -62,4 +62,21 @@ static class LocalizationManager
 			currentLanguage = GetLocalizationFromLanguageCode(currentLanguage.ParentsCode);
 		}
 	}
+
+	public static void SetDynamicStringForAllLocalizations(string key, string translation)
+	{
+		foreach (Localization localization in localizations)
+		{
+			localization.SetDynamicString(key, translation);
+		}
+	}
+
+	public static void SetDynamicStringForAllLocalizations(string key, int translation) => SetDynamicStringForAllLocalizations(key, translation.ToString());
+	public static void SetDynamicStringForAllLocalizations(string key, float translation) => SetDynamicStringForAllLocalizations(key, translation, true, 999);
+	public static void SetDynamicStringForAllLocalizations(string key, float translation, bool includeCommas, int decimalPlaces)
+	{
+		//? N is for commas and F is for decimals
+		string format = (includeCommas ? "N" : "F") + Math.Max(0, decimalPlaces);
+		SetDynamicStringForAllLocalizations(key, translation.ToString(format));
+	}
 }

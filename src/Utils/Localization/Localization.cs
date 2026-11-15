@@ -110,8 +110,14 @@ class Localization
 	}
 
 	public void SetDynamicString(string key, string translation) => dynamicTranslations[key] = translation;
-	public void SetDynamicString(string key, float translation) => SetDynamicString(key, translation.ToString());
 	public void SetDynamicString(string key, int translation) => SetDynamicString(key, translation.ToString());
+	public void SetDynamicString(string key, float translation) => SetDynamicString(key, translation, true, 999);
+	public void SetDynamicString(string key, float translation, bool includeCommas, int decimalPlaces)
+	{
+		//? N is for commas and F is for decimals
+		string format = (includeCommas ? "N" : "F") + Math.Max(0, decimalPlaces);
+		SetDynamicString(key, translation.ToString(format));
+	}
 
 	public override string ToString() => Code;
 }
