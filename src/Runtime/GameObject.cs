@@ -22,13 +22,24 @@ class GameObject
 		Transform = new Transform() { GameObject = this };		
 	}
 
-	public GameObject(string name, Vector2 position)
+	public GameObject(string name, Vector2 position, float scale = 1f)
 	{
 		Name = name;
 		Transform = new Transform()
 		{
 			GameObject = this,
-			Position = position
+			Position = position,
+			Scale = new Vector2(scale)
+		};
+	}
+
+	public GameObject(string name, float scale = 1f)
+	{
+		Name = name;
+		Transform = new Transform()
+		{
+			GameObject = this,
+			Scale = new Vector2(scale)
 		};
 	}
 
