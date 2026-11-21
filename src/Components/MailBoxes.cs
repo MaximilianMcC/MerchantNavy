@@ -1,0 +1,4 @@
+class MailBox : Component
+{
+	
+}

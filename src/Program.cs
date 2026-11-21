@@ -13,12 +13,25 @@ class Program
 		Terminal.Run();
 		DebugManager.LoadDebugState();
 		LocalizationManager.LoadLocalizations(false);
+		Assets.AutomaticallyLoadEverythingFromDirectory();
 
 		SceneManager.Add(new GameObject("test", new Test()));
 
-		SceneManager.Add(new GameObject("envelope")
+		SceneManager.Add(new GameObject("Inbox", new Vector2(50), 0.25f)
+			.AddComponent(new TextureRenderer("inbox"))
+			.AddComponent(new Hitbox())
+			.AddComponent(new MailBox())
+		);
+
+		SceneManager.Add(new GameObject("Outbox", new Vector2(1920 - 50, 50), 0.25f)
+			.AddComponent(new TextureRenderer("outbox"))
+			.AddComponent(new Hitbox())
+			.AddComponent(new MailBox())
+		);
+
+		SceneManager.Add(new GameObject("envelope", 0.7f)
 			.AddComponent(new Draggable())
-			.AddComponent(new TextureRenderer("./assets/texture/envelope.png"))
+			.AddComponent(new TextureRenderer("envelope"))
 			.AddComponent(new Hitbox())
 			.AddComponent(new Envelope())
 		);
@@ -41,6 +54,7 @@ class Program
 		}
 
 		SceneManager.CleanUp();
+		Assets.UnloadEverything();
 		Raylib.CloseAudioDevice();
 		Raylib.CloseWindow();
 	}

@@ -120,5 +120,7 @@ static class Terminal
 			LocalizationManager.SetDynamicStringForAllLocalizations(args[0], args[1]);
 			Console.WriteLine($"{args[0]}={args[1]}");
 		}
+
+		if (CommandRan("assets")) Assets.PrintAllLoadedAssets();
 	}
 }

@@ -5,13 +5,6 @@ class Envelope : Component
 {	
 	private Draggable dragStatus;
 
-	private Sound sound;
-
-	public override void StartStatic()
-	{
-		sound = Raylib.LoadSound("./assets/sound/paper1.wav");
-	}
-
 	public override void Start()
 	{
 		dragStatus = GetComponent<Draggable>();
@@ -23,7 +16,7 @@ class Envelope : Component
 		if (!(dragStatus.CurrentlyBeingDragged && Raylib.IsKeyPressed(KeyboardKey.E))) return;
 
 		// Play the opening sound effect
-		Raylib.PlaySound(sound);
+		Raylib.PlaySound(Assets.Sounds["paper1"]);
 
 		// Get our centre position so we can spawn the paper there too
 		Vector2 spawnPosition = Transform.Position;
@@ -31,7 +24,7 @@ class Envelope : Component
 		// Spawn a letter
 		GameObject paper = new GameObject("paper")
 			.AddComponent(new Draggable(), out Draggable paperDragging)
-			.AddComponent(new TextureRenderer("./assets/texture/paper1.png"))
+			.AddComponent(new TextureRenderer("paper1"))
 			.AddComponent(new Hitbox())
 			.AddComponent(new Paper());
 		paper.Transform.Position = spawnPosition;

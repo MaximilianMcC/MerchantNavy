@@ -10,4 +10,5 @@ A strategy game that takes inspiration from chartered trading companies such as 
 - Keys are to be in PascalCase, and `super` as-well as `superauto` are valid keys
 - You can use an `=` sign in a value unescaped but not in a key
 - The language file names need to match the things in the super stuff btw
-- You can 'nest' translations by putting it in graves: `hello, ``name``!` (only one md is being funky)
+- You can 'nest' translations by putting it in graves: `hello, ``name``!` (only one ` md is being funky)
+

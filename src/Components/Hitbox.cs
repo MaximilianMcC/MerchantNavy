@@ -20,7 +20,7 @@ class Hitbox : Component
 		// TODO: Remove this or add a toggle or something idk
 		if (GameObject.TryGetComponent(out TextureRenderer texture))
 		{
-			size = texture.Texture.Dimensions;
+			size = texture.Size;
 		}
 	}
 

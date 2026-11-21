@@ -1,32 +1,26 @@
 using System.Numerics;
-using Raylib_cs;
 
 class TextureRenderer : Component
 {
-	public Texture2D Texture;
-	private Vector2 Size;
-
+	public string TextureKey { get; set; }
 	public bool Visible { get; set; } = true;
 
-	public TextureRenderer(string filePath)
+	public TextureRenderer(string key, bool visible = true)
 	{
-		Texture = Raylib.LoadTexture(filePath);
+		TextureKey = key;
+		Visible = visible;
 	}
 
-	public override void Start()
-	{
-		Size = Texture.Dimensions;
-	}
+	public Vector2 Size => Assets.Textures[TextureKey].Dimensions * Transform.WorldScale;
 
 	public override void Draw()
 	{
 		if (Visible == false) return;
 
-		Graphics.DrawTexture(Texture, GameObject.Transform.WorldPosition, Size * GameObject.Transform.WorldScale);
-	}
-
-	public override void CleanUp()
-	{
-		Raylib.UnloadTexture(Texture);
+		Graphics.DrawTexture(
+			Assets.Textures[TextureKey],
+			Transform.WorldPosition,
+			Size
+		);
 	}
 }
