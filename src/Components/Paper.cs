@@ -10,7 +10,7 @@ class Paper : Component
 		TextureRenderer texture = GetComponent<TextureRenderer>();
 
 		Graphics.DrawTextWrapped(
-			Assets.Texts["LoremIpsum"],
+			Assets.Texts["grant"],
 			Transform.WorldPosition + textOffset,
 			texture.Size.X - 30f,
 			Assets.Fonts["High Empathy"],

@@ -122,5 +122,7 @@ static class Terminal
 		}
 
 		if (CommandRan("assets")) Assets.PrintAllLoadedAssets();
+
+		if (CommandRan("pv", out args)) Console.WriteLine(String.Join(", ", TextUtils.SplitNumberIntoPlaceValues(int.Parse(args[0]))));
 	}
 }

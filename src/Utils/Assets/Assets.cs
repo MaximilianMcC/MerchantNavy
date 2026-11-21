@@ -2,7 +2,6 @@ using Raylib_cs;
 
 static class Assets
 {
-	
 	public static readonly TextureAssetManager Textures = new TextureAssetManager();
 	public static readonly SoundAssetManager Sounds = new SoundAssetManager();
 	public static readonly FontAssetManager Fonts = new FontAssetManager();
